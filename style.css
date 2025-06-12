@@ -20,21 +20,11 @@ h1 {
   border-radius: 8px;
 }
 
-.keywords-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.keywords-header h3 {
-  margin: 0;
-}
-
+.profile-buttons button,
 .keyword-actions button {
-  margin-left: 5px;
-  padding: 4px 8px;
+  margin: 4px;
   font-size: 12px;
-  cursor: pointer;
+  padding: 5px 8px;
 }
 
 .keywords-box {
@@ -54,10 +44,24 @@ h1 {
   font-size: 13px;
 }
 
+.delete-btn {
+  cursor: pointer;
+  color: red;
+  margin-left: 4px;
+  font-weight: bold;
+  user-select: none;
+}
+
+.keyword-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
 input[type="text"] {
   width: calc(100% - 90px);
   padding: 5px;
-  margin-top: 5px;
   font-size: 14px;
 }
 
@@ -66,20 +70,10 @@ button {
   color: white;
   border: none;
   padding: 6px 12px;
-  margin-top: 8px;
-  margin-right: 5px;
   border-radius: 4px;
   cursor: pointer;
 }
 
 button:hover {
   background-color: #0056b3;
-}
-
-.delete-btn {
-  cursor: pointer;
-  color: red;
-  font-weight: bold;
-  user-select: none;
-  margin-left: 4px;
 }

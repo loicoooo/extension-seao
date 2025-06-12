@@ -1,24 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-
-<style>
-  .delete-btn {
-    cursor: pointer;
-    color: red;
-    margin-left: 8px;
-    font-weight: bold;
-    user-select: none;
-  }
-  .keyword-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 4px;
-  }
-</style>
-
-
   <meta charset="UTF-8">
   <title>Extension SEAO</title>
   <link rel="stylesheet" href="style.css">
@@ -27,25 +9,33 @@
   <h1>Extension SEAO</h1>
 
   <div class="section">
-    <div class="keywords-header">
-      <h3>Mots-clés SEAO</h3>
-      <div class="keyword-actions">
-        <button id="selectAllKeywords">Tout sélectionner</button>
-        <button id="deselectAllKeywords">Tout désélectionner</button>
-      </div>
+    <h3>Profils de mots-clés</h3>
+    <select id="profileSelect"></select>
+    <div class="profile-buttons">
+      <button id="newProfile">Nouveau profil</button>
+      <button id="renameProfile">Renommer profil</button>
+      <button id="deleteProfile">Supprimer profil</button>
     </div>
-    <p>Mots-clés actifs : <span id="keywordCount">0</span></p>
-    <div id="defaultKeywords" class="keywords-box"></div>
+  </div>
+
+  <div class="section">
+    <h3>Mots-clés SEAO</h3>
+	<p>Mots-clés actifs dans le profil sélectionné : <span id="keywordCount">0</span></p>
+    <div class="keyword-actions">
+      <button id="selectAllBtn">Tout sélectionner</button>
+      <button id="deselectAllBtn">Tout désélectionner</button>
+    </div>
+    <div id="profileKeywords" class="keywords-box"></div>
   </div>
 
   <div class="section">
     <h3>Ajouter des mots-clés personnalisés</h3>
     <input type="text" id="newKeyword" placeholder="Mot-clé personnalisé">
     <button id="addKeyword">Ajouter</button>
-    <div id="customKeywords" class="keywords-box"></div>
   </div>
 
   <div class="section">
+    
     <button id="savePreferences">Sauvegarder les préférences</button>
     <button id="launchSearch">Lancer la recherche</button>
   </div>
