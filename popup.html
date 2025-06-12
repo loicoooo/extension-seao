@@ -19,37 +19,36 @@
 </style>
 
 
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Extension SEAO</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Mots-clés SEAO</h1>
+  <h1>Extension SEAO</h1>
 
-  <section>
-    <h2>Mots-clés par défaut</h2>
-	<p>Mots-clés actifs : <span id="keywordCount">0</span></p>
-    <div id="defaultKeywords"></div>
-  </section>
+  <div class="section">
+    <div class="keywords-header">
+      <h3>Mots-clés SEAO</h3>
+      <div class="keyword-actions">
+        <button id="selectAllKeywords">Tout sélectionner</button>
+        <button id="deselectAllKeywords">Tout désélectionner</button>
+      </div>
+    </div>
+    <p>Mots-clés actifs : <span id="keywordCount">0</span></p>
+    <div id="defaultKeywords" class="keywords-box"></div>
+  </div>
 
-  <section>
-    <h2>Mots-clés personnalisés</h2>
-    <div id="customKeywords"></div>
-    <button id="deleteCustomKeywords" style="margin-top:10px; background:#dc3545; color:white; border:none; padding:8px 12px; border-radius:5px; cursor:pointer;">
-      Supprimer tous les mots-clés personnalisés
-    </button>
-  </section>
-
-  <section>
-    <input type="text" id="newKeyword" placeholder="Ajouter un mot-clé personnalisé" />
+  <div class="section">
+    <h3>Ajouter des mots-clés personnalisés</h3>
+    <input type="text" id="newKeyword" placeholder="Mot-clé personnalisé">
     <button id="addKeyword">Ajouter</button>
-  </section>
+    <div id="customKeywords" class="keywords-box"></div>
+  </div>
 
-  <section>
-    
-    <button id="savePreferences">Enregistrer les préférences</button>
+  <div class="section">
+    <button id="savePreferences">Sauvegarder les préférences</button>
     <button id="launchSearch">Lancer la recherche</button>
-  </section>
+  </div>
 
   <script src="popup.js"></script>
 </body>

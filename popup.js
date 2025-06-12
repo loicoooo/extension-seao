@@ -19,9 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const keywordCount = document.getElementById("keywordCount");
 
   function updateCount() {
-    const totalDefault = defaultContainer.querySelectorAll("input[type='checkbox']:checked").length;
-    const totalCustom = customContainer.querySelectorAll("input[type='checkbox']:checked").length;
-    const total = totalDefault + totalCustom;
+    const total =
+      defaultContainer.querySelectorAll("input[type='checkbox']:checked").length +
+      customContainer.querySelectorAll("input[type='checkbox']:checked").length;
     keywordCount.textContent = total;
   }
 
@@ -33,16 +33,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function saveToStorage() {
     const activeKeywords = getActiveKeywords();
-
-    const customKeywords = Array.from(customContainer.querySelectorAll("input[type='checkbox']")).map(cb => ({
-      value: cb.value,
-      checked: cb.checked
-    }));
-
-    chrome.storage.local.set({ activeKeywords, customKeywords }, () => {
-      updateCount();
-      console.log("✅ Préférences enregistrées.");
+    const customKeywords = Array.from(customContainer.querySelectorAll("label")).map(label => {
+      const checkbox = label.querySelector("input[type='checkbox']");
+      return {
+        value: checkbox.value,
+        checked: checkbox.checked
+      };
     });
+    chrome.storage.local.set({ activeKeywords, customKeywords });
+    updateCount();
+  }
+
+  function createKeywordElement(value, checked, isCustom = false) {
+    const label = document.createElement("label");
+    label.className = "keyword-item";
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.value = value;
+    checkbox.checked = checked;
+    checkbox.addEventListener("change", saveToStorage);
+
+    label.appendChild(checkbox);
+    label.appendChild(document.createTextNode(value));
+
+    if (isCustom) {
+      const deleteBtn = document.createElement("span");
+      deleteBtn.textContent = "✕";
+      deleteBtn.className = "delete-btn";
+      deleteBtn.addEventListener("click", () => {
+        label.remove();
+        saveToStorage();
+      });
+      label.appendChild(deleteBtn);
+    }
+
+    return label;
   }
 
   function renderKeywords() {
@@ -50,39 +76,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const active = data.activeKeywords || [];
       const custom = data.customKeywords || [];
 
-      // Affiche mots-clés par défaut
       defaultContainer.innerHTML = "";
       defaultKeywords.forEach(keyword => {
         const isChecked = active.includes(keyword);
-        const label = document.createElement("label");
-        label.className = "keyword-item";
-        label.innerHTML = `<input type="checkbox" value="${keyword}" ${isChecked ? "checked" : ""}> ${keyword}`;
-        label.querySelector("input").addEventListener("change", saveToStorage);
+        const label = createKeywordElement(keyword, isChecked);
         defaultContainer.appendChild(label);
       });
 
-      // Affiche mots-clés personnalisés avec bouton supprimer
       customContainer.innerHTML = "";
-      custom.forEach((item, index) => {
-        const label = document.createElement("label");
-        label.className = "keyword-item";
-        label.innerHTML = `
-          <input type="checkbox" value="${item.value}" ${item.checked ? "checked" : ""}> 
-          ${item.value}
-          <span class="delete-btn" title="Supprimer ce mot-clé" data-index="${index}">❌</span>
-        `;
-        label.querySelector("input").addEventListener("change", saveToStorage);
-
-        label.querySelector(".delete-btn").addEventListener("click", (e) => {
-          e.preventDefault();
-          custom.splice(index, 1);
-          chrome.storage.local.set({ customKeywords: custom }, () => {
-            renderKeywords();
-            saveToStorage();
-            console.log(`✅ Mot-clé personnalisé supprimé : ${item.value}`);
-          });
-        });
-
+      custom.forEach(item => {
+        const label = createKeywordElement(item.value, item.checked, true);
         customContainer.appendChild(label);
       });
 
@@ -95,35 +98,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const value = input.value.trim();
     if (!value) return;
 
-    const label = document.createElement("label");
-    label.className = "keyword-item";
-    label.innerHTML = `<input type="checkbox" value="${value}" checked> ${value} <span class="delete-btn" title="Supprimer ce mot-clé">❌</span>`;
-    label.querySelector("input").addEventListener("change", saveToStorage);
-    label.querySelector(".delete-btn").addEventListener("click", (e) => {
-      e.preventDefault();
-      label.remove();
-      saveToStorage();
-    });
-
+    const label = createKeywordElement(value, true, true);
     customContainer.appendChild(label);
-
     input.value = "";
 
     saveToStorage();
-  });
-
-  document.getElementById("deleteCustomKeywords").addEventListener("click", () => {
-    customContainer.innerHTML = "";
-    chrome.storage.local.set({ customKeywords: [] }, () => {
-      console.log("✅ Mots-clés personnalisés supprimés.");
-      saveToStorage();
-    });
   });
 
   document.getElementById("savePreferences").addEventListener("click", saveToStorage);
 
   document.getElementById("launchSearch").addEventListener("click", () => {
     chrome.runtime.sendMessage({ action: "launchSearch" });
+  });
+
+  document.getElementById("selectAllKeywords").addEventListener("click", () => {
+    const checkboxes = document.querySelectorAll("#defaultKeywords input[type='checkbox'], #customKeywords input[type='checkbox']");
+    checkboxes.forEach(cb => cb.checked = true);
+    saveToStorage();
+  });
+
+  document.getElementById("deselectAllKeywords").addEventListener("click", () => {
+    const checkboxes = document.querySelectorAll("#defaultKeywords input[type='checkbox'], #customKeywords input[type='checkbox']");
+    checkboxes.forEach(cb => cb.checked = false);
+    saveToStorage();
   });
 
   renderKeywords();
