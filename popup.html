@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<style>
+  .delete-btn {
+    cursor: pointer;
+    color: red;
+    margin-left: 8px;
+    font-weight: bold;
+    user-select: none;
+  }
+  .keyword-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+</style>
+
+
+  <meta charset="UTF-8" />
+  <title>Extension SEAO</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Mots-clés SEAO</h1>
+
+  <section>
+    <h2>Mots-clés par défaut</h2>
+	<p>Mots-clés actifs : <span id="keywordCount">0</span></p>
+    <div id="defaultKeywords"></div>
+  </section>
+
+  <section>
+    <h2>Mots-clés personnalisés</h2>
+    <div id="customKeywords"></div>
+    <button id="deleteCustomKeywords" style="margin-top:10px; background:#dc3545; color:white; border:none; padding:8px 12px; border-radius:5px; cursor:pointer;">
+      Supprimer tous les mots-clés personnalisés
+    </button>
+  </section>
+
+  <section>
+    <input type="text" id="newKeyword" placeholder="Ajouter un mot-clé personnalisé" />
+    <button id="addKeyword">Ajouter</button>
+  </section>
+
+  <section>
+    
+    <button id="savePreferences">Enregistrer les préférences</button>
+    <button id="launchSearch">Lancer la recherche</button>
+  </section>
+
+  <script src="popup.js"></script>
+</body>
+</html>

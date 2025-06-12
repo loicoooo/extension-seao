@@ -1,0 +1,107 @@
+:root {
+  --bg: #ffffff;
+  --fg: #000000;
+  --btn-bg: #eee;
+  --btn-hover: #ddd;
+  --input-bg: #fff;
+  --input-border: #ccc;
+  --box-bg: #f9f9f9;
+  --box-border: #ccc;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: sans-serif;
+  padding: 15px 20px;
+  margin: 0;
+  width: 320px; /* Légèrement plus large pour plus d’espace */
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 1.3em;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 1.1em;
+  margin: 15px 0 8px 0;
+  font-weight: 500;
+}
+
+button {
+  background-color: var(--btn-bg);
+  color: var(--fg);
+  border: 1px solid var(--input-border);
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button:hover {
+  background-color: var(--btn-hover);
+}
+
+input[type="text"], select {
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--fg);
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.keyword-item {
+  background-color: var(--box-bg);
+  border: 1px solid var(--box-border);
+  padding: 6px 10px;
+  margin-bottom: 6px;
+  display: block;
+  border-radius: 4px;
+  user-select: none;
+  font-size: 13.5px;
+}
+
+#defaultKeywords, #customKeywords {
+  max-height: 220px; /* Plus d’espace vertical visible */
+  overflow-y: auto;
+  padding: 8px 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  background-color: var(--box-bg);
+  margin-bottom: 18px;
+}
+
+/* Gestion du conteneur principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Scrollbar un peu custom pour le chrome */
+#defaultKeywords::-webkit-scrollbar, #customKeywords::-webkit-scrollbar {
+  width: 8px;
+}
+
+#defaultKeywords::-webkit-scrollbar-thumb, #customKeywords::-webkit-scrollbar-thumb {
+  background-color: var(--input-border);
+  border-radius: 4px;
+}
+
+#defaultKeywords::-webkit-scrollbar-track, #customKeywords::-webkit-scrollbar-track {
+  background-color: var(--box-bg);
+}

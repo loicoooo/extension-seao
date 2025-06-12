@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "SEAO Automatisé",
+  "version": "1.0",
+  "description": "Automatise les recherches SEAO avec mots-clés, filtres et exportation.",
+  "permissions": ["storage", "scripting", "activeTab"],
+  "host_permissions": ["https://seao.gouv.qc.ca/*"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js"
+  }
+}
