@@ -1,9 +1,9 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   margin: 10px;
   padding: 0;
   width: 360px;
-  background-color: #ffffff;
+  background-color: #FFEB3B;
   color: #000000;
 }
 
@@ -16,7 +16,7 @@ h1 {
 .section {
   margin-bottom: 15px;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #000000;
   border-radius: 8px;
 }
 
@@ -66,7 +66,7 @@ input[type="text"] {
 }
 
 button {
-  background-color: #007BFF;
+  background-color: #000000;
   color: white;
   border: none;
   padding: 6px 12px;
