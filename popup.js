@@ -42,7 +42,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderProfileKeywords() {
     const profile = profiles.find((p) => p.id === selectedProfileId);
-    if (!profile) return;
+    if (!profile) {
+      profileKeywords.innerHTML = "";
+      keywordCount.textContent = "0";
+      return;
+    }
 
     profileKeywords.innerHTML = "";
     profile.keywords.forEach((kw, index) => {
@@ -78,7 +82,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function saveProfiles() {
-    chrome.storage.local.set({ profiles });
+    chrome.storage.local.set({ profiles }, () => {
+      // Après sauvegarde, on sauvegarde aussi la liste des mots-clés actifs (pour content.js)
+      const profile = profiles.find((p) => p.id === selectedProfileId);
+      if (!profile) return;
+      const activeKeywords = profile.keywords.filter(k => k.checked).map(k => k.value);
+      chrome.storage.local.set({ activeKeywords });
+    });
   }
 
   function loadProfiles() {
@@ -116,7 +126,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("savePreferences").addEventListener("click", saveProfiles);
+
   document.getElementById("launchSearch").addEventListener("click", () => {
+    // Avant d'envoyer, on s'assure que la liste activeKeywords est à jour
+    saveProfiles();
     chrome.runtime.sendMessage({ action: "launchSearch" });
   });
 
