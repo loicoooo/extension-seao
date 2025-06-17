@@ -77,3 +77,30 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+#savePreferences {
+	display: none;
+}
+
+#launchSearch {
+	display: block;
+	margin: 5px auto;
+}
+.centered-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.centered-logo img {
+  height: 60px;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.centered-logo img:hover {
+  transform: scale(1.05);
+}
