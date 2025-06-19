@@ -77,3 +77,14 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+/* Masquer le bouton "Sauvegarder les préférences" */
+#savePreferences {
+  display: none !important;
+}
+
+/* Centrer le bouton "Lancer la recherche" */
+#launchSearch {
+  display: block;
+  margin: 5px auto;
+}
