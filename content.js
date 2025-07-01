@@ -16,7 +16,7 @@ chrome.storage.local.get(["activeKeywords"], (data) => {
     // Remplace le sélecteur ci-dessous par celui du champ mots clés réel dans SEAO
     const input = document.querySelector("input#form\\.recherche\\.avancee\\.mots\\.cles\\.nimporte");
     if (input) {
-      input.value = formattedKeywords.join(" OR ");
+      input.value = formattedKeywords.join(" ");  // <-- ligne modifiée
       input.dispatchEvent(new Event('input', { bubbles: true }));
 
       // Coche la case "Avis appels d'offres"

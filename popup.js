@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const defaultKeywords = [
-    "Atmosphare", "Kompan", "Ipepa", "équipements de jeux", "aire de jeux",
+    "Atmosphare", "Kompan", "Ipema", "équipements de jeux", "aire de jeux",
     "structure récréative", "appareils de jeux", "modules d'entraînement",
     "tapis sablé", "terrain multisport", "condition physique", "pumptack",
     "skatepark", "parcours modulaire", "piste à rouleau", "piste à vague",
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "estrade mobile", "gradin", "gradin rétractable", "tribune", "télescopique",
     "escamotables", "aréna", "salle multiculturelle", "salle multifonctionnelle",
     "salle de spectacle", "multifonction", "maison de la culture",
-    "sanitaire automatisée", "toilette séchée", "toilette intelligente",
+    "sanitaire automatisée", "toilette sèche", "toilette intelligente",
     "toilette autonettoyante", "sanitaire autonettoyant", "toilette écologique",
     "unité sanitaire automatisée"
   ];
