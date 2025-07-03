@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const defaultKeywords = [
     "Atmosphare", "Kompan", "Ipema", "équipements de jeux", "aire de jeux",
     "structure récréative", "appareils de jeux", "modules d'entraînement",
-    "tapis sablé", "terrain multisport", "condition physique", "pumptack",
+    "tapis sablé", "terrain multisport", "condition physique", "Pumptrack",
     "skatepark", "parcours modulaire", "piste à rouleau", "piste à vague",
-    "Playrite", "Concept Urbain", "Monooko", "Parkitect", "Arconas",
+    "Playrite", "Concept Urbain", "Moonako", "Parkitect", "Arconas",
     "hussey seating", "omsi", "master industrie", "seating concept",
     "estrade mobile", "gradin", "gradin rétractable", "tribune", "télescopique",
     "escamotables", "aréna", "salle multiculturelle", "salle multifonctionnelle",
